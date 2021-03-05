@@ -8,17 +8,21 @@ screen.addshape(image)
 turtle.shape(image)
 data = pandas.read_csv("31_states.csv")
 states = data["state"].to_list()
+states_guessed = [False for i in range(31)]
 x_cor = data["x"].to_list()
 y_cor = data["y"].to_list()
-
+states_to_guess = data["state"].to_list()
 score = 0
 
 while score < 31:
     user_answer = screen.textinput(title=f"{score}/31 correct states", prompt="What is the name of another state")
-    if user_answer in states:
+    if user_answer == 'exit':
+        break
+    elif user_answer in states:
         score += 1
         x1 = x_cor[states.index(user_answer)]
         y1 = y_cor[states.index(user_answer)]
+        states_to_guess.remove(user_answer)
 
         new_state = turtle.Turtle()
         new_state.up()
@@ -29,4 +33,6 @@ while score < 31:
     else:
         print("not present")
 
+for x in states_to_guess:
+    print(x)
 screen.exitonclick()
