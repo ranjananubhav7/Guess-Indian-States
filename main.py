@@ -33,6 +33,7 @@ while score < 31:
     else:
         print("not present")
 
+print("States to remember...")
 for x in states_to_guess:
     print(x)
 screen.exitonclick()
